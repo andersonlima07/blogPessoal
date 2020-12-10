@@ -10,32 +10,34 @@ import { UserLogin } from '../model/UserLogin';
 export class AuthService {
 
   constructor(private http: HttpClient) { }
-  
-  logar(userLogin: UserLogin): Observable<UserLogin> {
+
+  logar(userLogin: UserLogin) : Observable<UserLogin> {
     return this.http.post<UserLogin>('http://localhost:8080/usuarios/logar', userLogin)
   }
 
-  cadastrar(user: User): Observable<User> {
+  cadastrar(user: User) : Observable<User> {
     return this.http.post<User>('http://localhost:8080/usuarios/cadastrar', user)
   }
 
-  btnSair(){
+  btnSair() {
     let ok = false
     let token = localStorage.getItem('token')
 
-    if(token != null){
+    if (token != null) {
       ok = true
     }
+
     return ok
   }
 
-  btnLogin(){
+  btnLogin() {
     let ok = false
     let token = localStorage.getItem('token')
 
-    if(token == null){
+    if (token == null) {
       ok = true
     }
+
     return ok
-}
+  }
 }

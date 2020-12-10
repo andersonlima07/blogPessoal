@@ -1,4 +1,4 @@
-import { environment } from './../../environments/environment';
+import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Tema } from '../model/Tema';
@@ -11,32 +11,18 @@ export class TemaService {
   constructor(private http: HttpClient) { }
 
   token = {
-    headers: new HttpHeaders().set('Authorization', environment.token)
+    headers: new HttpHeaders().set('Authorization', localStorage.getItem('token')!)
   }
 
-  getAllTemas() {
-    return this.http.get('https://localhost:8080/tema', this.token)
+  getAllTemas() : Observable<Tema[]> {
+    return this.http.get<Tema[]>('http://localhost:8080/tema', this.token)
   }
 
-  getByIdTema(id: number) {
-    return this.http.get(`https://localhost:8080/tema/${id}`, this.token) /*ID com crase*/
+  getByIdTema(id: number) : Observable<Tema> {
+    return this.http.get<Tema>(`https://localhost:8080/tema/${id}`, this.token)
   }
 
-  postTema(tema: Tema) {
-    return this.http.post('https://localhost:8080/tema', tema, this.token)
+  postTema(tema: Tema) : Observable<Tema> {
+    return this.http.post<Tema>('http://localhost:8080/tema', tema, this.token)
   }
-
-  putTema(tema: Tema) {
-    return this.http.put('https://localhost:8080/tema', tema, this.token)
-  }
-
-  deleteTema(id: number) {
-    return this.http.delete(`https://localhost:8080/tema/${id}`, this.token)
-  }
-
-  getByNomeTema(nome: string) {
-    return this.http.get(`https://localhost:8080/tema/nome/${nome}`, this.token)
-  }
-
-
 }
