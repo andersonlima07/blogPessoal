@@ -31,6 +31,6 @@ export class TemaService {
   }
 
   deleteTema(id: number) {
-    return this.http.delete(`http://localhost:9000/tema/${id}`, this.token)
+    return this.http.delete(`http://localhost:8080/tema/${id}`, this.token)
   }
 }
