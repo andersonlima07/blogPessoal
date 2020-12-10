@@ -11,15 +11,15 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  logar(userLogin: UserLogin) : Observable<UserLogin> {
-    return this.http.post<UserLogin>('http://localhost:8080/usuarios/logar', userLogin)
+  logar(userLogin: UserLogin) {
+    return this.http.post('http://localhost:8080/usuarios/logar', userLogin)
   }
 
-  cadastrar(user: User) : Observable<User> {
-    return this.http.post<User>('http://localhost:8080/usuarios/cadastrar', user)
+  cadastrar(user: User) {
+    return this.http.post('http://localhost:8080/usuarios/cadastrar', user)
   }
 
-  btnSair() {
+  btnSair(){
     let ok = false
     let token = localStorage.getItem('token')
 
@@ -40,4 +40,5 @@ export class AuthService {
 
     return ok
   }
+
 }
