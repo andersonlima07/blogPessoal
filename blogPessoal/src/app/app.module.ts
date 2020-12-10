@@ -32,8 +32,8 @@ import { DeleteTemaComponent } from './delete-tema/delete-tema.component';
     LoginComponent,
     CadastroComponent,
     PostTemaComponent,
-    PutTemaComponent,
     PutPostagemComponent,
+    PutTemaComponent,
     DeletePostagemComponent,
     DeleteTemaComponent
   ],

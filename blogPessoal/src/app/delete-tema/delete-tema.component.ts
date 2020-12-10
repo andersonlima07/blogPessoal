@@ -18,27 +18,25 @@ export class DeleteTemaComponent implements OnInit {
   constructor(
     private temaService: TemaService,
     private router: Router,
-    private route: ActivatedRoute,
-    private alerta: AlertasService
+    private route: ActivatedRoute
   ) { }
 
-  ngOnInit() {
-    window.scroll(0,0)
-    let id:number = this.route.snapshot.params["id"];
+  ngOnInit(){
+    window.scroll(0, 0)
+    let id: number = this.route.snapshot.params["id"]
     this.findByIdTema(id)
-
   }
 
-  findByIdTema(id:number){
-    this.temaService.getByIdTema(id).subscribe((resp: Tema)=>{
+  findByIdTema(id: number) {
+    this.temaService.getByIdTema(id).subscribe((resp: Tema) => {
       this.tema = resp
-    });
+    })
   }
 
   btnSim() {
     this.temaService.deleteTema(this.tema.id).subscribe(() => {
       this.router.navigate(['/cadastro-tema'])
-      this.alerta.showAlertSuccess('Tema apagado com sucesso!')
+      alert('Tema apagado com sucesso!')
     })
   }
 
@@ -47,3 +45,4 @@ export class DeleteTemaComponent implements OnInit {
   }
 
 }
+

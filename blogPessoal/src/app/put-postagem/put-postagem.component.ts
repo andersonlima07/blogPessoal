@@ -25,16 +25,14 @@ export class PutPostagemComponent implements OnInit {
     private temaService: TemaService,
     private postagemService: PostagemService,
     private router: Router,
-    private route: ActivatedRoute,
-    private alert: AlertasService
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(){
-    window.scroll(0,0)
+    window.scroll(0, 0)
 
     this.idPost = this.route.snapshot.params["id"]
     this.findByIdPostagem(this.idPost)
-
 
     this.findAllTemas()
   }
@@ -45,17 +43,17 @@ export class PutPostagemComponent implements OnInit {
     })
   }
 
-  salvar(){
+  salvar() {
     this.tema.id = this.idTema
     this.postagem.tema = this.tema
 
     this.postagemService.putPostagem(this.postagem).subscribe((resp: Postagem) => {
       this.postagem = resp
       this.router.navigate(['/feed'])
-      this.alert.showAlertSuccess('Postagem alterada com sucesso')
+      alert('Postagem alterada com sucesso!')
     }, err => {
-      if (err.status == '500'){
-        this.alert.showAlertDanger('Preencha todos os campos corretamente antes de enviar!')
+      if (err.status == '500') {
+        alert('Preencha todos os campos corretamente antes de enviar!')
       }
     })
   }
@@ -66,10 +64,10 @@ export class PutPostagemComponent implements OnInit {
     })
   }
 
- findByIdTema() {
-   this.temaService.getByIdTema(this.idTema).subscribe((resp: Tema) => {
-     this.tema = resp;
-   })
- }
+  findByIdTema() {
+    this.temaService.getByIdTema(this.idTema).subscribe((resp: Tema) => {
+      this.tema = resp
+    })
+  }
 
 }
